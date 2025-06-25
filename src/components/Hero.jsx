@@ -1,9 +1,33 @@
 import gsap from "gsap";
-import {useGSAP} from "@gsap/react";
-import {SplitText} from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
+import { useRef, useState, useEffect } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Custom useMediaQuery hook
+const useMediaQuery = (query) => {
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+        const media = window.matchMedia(query);
+        if (media.matches !== matches) {
+            setMatches(media.matches);
+        }
+
+        const listener = () => setMatches(media.matches);
+        media.addEventListener("change", listener);
+
+        return () => media.removeEventListener("change", listener);
+    }, [matches, query]);
+
+    return matches;
+};
 
 const Hero = () => {
+    const videoRef = useRef();
+    const isMobile = useMediaQuery("(max-width: 767px)");
+
+
 
     useGSAP(()=>{
         const heroSplit = new SplitText('.title',{type:"chars,words"});
@@ -23,20 +47,39 @@ const Hero = () => {
             delay:1
         })
 
+        // First ScrollTrigger for leaf animations
         gsap.timeline({scrollTrigger:{
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom top",
-        scrub:true,
-        pin: true,
-        pinSpacing: false
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom top",
+            scrub:true,
+            pin: true,
+            pinSpacing: false
             }
         })
             .to('.right-leaf',{y: 200},0)
             .to('.left-leaf',{y: -200},0)
 
-    },[])
+        // Define values based on mobile or desktop
+        const startValue = isMobile ? 'top 50%' : 'center 60%';
+        const endValue = isMobile ? 'top 120%' : 'bottom top';
 
+        // Second ScrollTrigger using the defined values
+        const tl= gsap.timeline({
+            scrollTrigger: {
+                trigger: "video",
+                start: startValue,
+                end: endValue,
+                scrub: true,
+                pin: true,
+            }
+        })
+        videoRef.current.onloadedmetadata = () => {
+        tl.to(videoRef.current, {
+            currentTime: videoRef.current.duration
+            })
+        }
+    },[])
 
     return(
        <>
@@ -61,7 +104,9 @@ const Hero = () => {
                 </div>
                </div>
            </section>
-
+            <div className="video inset-0">
+                <video src="/videos/output.mp4" muted playsInline preload="auto" ref={videoRef} />
+            </div>
        </>
     )
 }

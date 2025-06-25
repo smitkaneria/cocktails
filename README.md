@@ -1,2 +1,2 @@
 # cocktails
-animated website with scroll behavior
+animated website
