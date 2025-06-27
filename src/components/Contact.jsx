@@ -35,21 +35,21 @@ const Contact = () => {
             <img src="/images/footer-left-leaf.png" alt="leaf-left" id="f-left-leaf" />
 
             <div className="content">
-                <h2>Where to Find Us</h2>
+                <h2>looking for websites</h2>
 
                 <div>
-                    <h3>Visit Our Bar</h3>
-                    <p>456, Raq Blvd. #404, Los Angeles, CA 90210</p>
+                    <h3>Where to Find Me</h3>
+                    <p>below are the details</p>
                 </div>
 
                 <div>
                     <h3>Contact Us</h3>
-                    <p>(555) 987-6543</p>
-                    <p>hello@jsmcocktail.com</p>
+                    <p>+91 9429485920</p>
+                    <p>smitkaneria@protonmail.com</p>
                 </div>
 
                 <div>
-                    <h3>Open Every Day</h3>
+                    <h3>Open hours Day</h3>
                     {openingHours.map((time) => (
                         <p key={time.day}>
                             {time.day} : {time.time}

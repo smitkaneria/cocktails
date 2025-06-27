@@ -118,19 +118,19 @@ const openingHours = [
 
 const socials = [
     {
+        name: "Github",
+        icon: "/images/github-mark-white.png",
+        url: "www.github.com/smitkaneria",
+    },
+    {
         name: "Instagram",
         icon: "/images/insta.png",
-        url: "#",
+        url: "www.instagram.com/smitkaneria",
     },
     {
-        name: "X (Twitter)",
-        icon: "/images/x.png",
-        url: "#",
-    },
-    {
-        name: "Facebook",
-        icon: "/images/fb.png",
-        url: "#",
+        name: "Website",
+        icon: "/images/website-icon.png",
+        url: "www.smitkaneria.com",
     },
 ];
 
