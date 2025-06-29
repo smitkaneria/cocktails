@@ -120,17 +120,17 @@ const socials = [
     {
         name: "Github",
         icon: "/images/github-mark-white.png",
-        url: "www.github.com/smitkaneria",
+        url: "https://github.com/smitkaneria",
     },
     {
         name: "Instagram",
-        icon: "/images/insta.png",
-        url: "www.instagram.com/smitkaneria",
+        icon: "/images/linkedin-icon.png",
+        url: "https://www.linkedin.com/in/smitkaneria/",
     },
     {
         name: "Website",
         icon: "/images/website-icon.png",
-        url: "www.smitkaneria.com",
+        url: "https://www.smitkaneria.com/",
     },
 ];
 
