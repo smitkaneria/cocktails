@@ -98,5 +98,4 @@ This README file clearly states that:
 5. **Explains the project's purpose and limitations**
 6. **Includes standard project documentation** (features, tech stack, installation, etc.)
 
-Make sure to replace the placeholder contact information with your actual email, LinkedIn, and GitHub profiles.
-```
+
