@@ -1,4 +1,4 @@
-import {navLinks} from "../constants/index.js";
+import {navLinks} from "/src/constants/index.js";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
 const Navbar = () => {
@@ -13,8 +13,7 @@ const Navbar = () => {
 
         navTween.to("nav", {
             backgroundColor: "rgba(255, 255, 255, 0.1)", // semi-transparent
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)", // for Safari
+            backdropFilter: "blur(10px)", 
             duration: 1,
             ease: "power1.inOut"
         });

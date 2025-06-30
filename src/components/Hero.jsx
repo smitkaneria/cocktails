@@ -71,8 +71,8 @@ const Hero = () => {
  }, []);
  
  return (
-	<>
-	 <section id="hero" className="noisy">
+	<div>
+	   <div id="hero" className="noisy">
 		<h1 className="title">MOJITO</h1>
 		
 		<img
@@ -87,39 +87,40 @@ const Hero = () => {
 		/>
 		
 		<div className="body">
-		 {/* <img src="/images/arrow.png" alt="arrow" className="arrow" /> */}
-		 
-		 <div className="content">
+		<img src="/images/arrow.png" alt="arrow" className="arrow" />
+		
+		<div className="content">
 			<div className="space-y-5 hidden md:block">
-			 <p>Cool. Crisp. Classic.</p>
-			 <p className="subtitle">
+			<p>Cool. Crisp. Classic.</p>
+			<p className="subtitle">
 				Sip the Spirit <br /> of Summer
-			 </p>
+			</p>
 			</div>
 			
 			<div className="view-cocktails">
-			 <p className="subtitle">
+			<p className="subtitle">
 				Every cocktail on our menu is a blend of premium ingredients,
 				creative flair, and timeless recipes — designed to delight your
 				senses.
-			 </p>
-			 <a href="#cocktails">View cocktails</a>
+			</p>
+			<a href="#cocktails">View cocktails</a>
 			</div>
-		 </div>
 		</div>
-	 </section>
-	 
-	 <div className="video absolute inset-0">
-		<video
-		 ref={videoRef}
-		 muted
-		 playsInline
-		 preload="auto"
-		 src="/videos/output.mp4"
-		/>
-	 </div>
-	</>
- );
+		</div>
+		</div>
+		<div className="video absolute inset-0">
+			<video
+			ref={videoRef}
+			muted
+			playsInline
+			preload="auto"
+			src="/videos/output.mp4"
+			autoPlay
+			loop	
+			/>
+		</div>
+	</div>
+);
 };
 
 export default Hero;
