@@ -6,10 +6,16 @@ import { useMediaQuery } from "react-responsive";
 
 const Hero = () => {
  const videoRef = useRef();
- 
  const isMobile = useMediaQuery({ maxWidth: 767 });
  
  useGSAP(() => {
+
+	videoRef.current.onloadedmetadata = () => {
+		tl.to(videoRef.current, {
+		   currentTime: videoRef.current.duration,
+		});
+	   };
+
 	const heroSplit = new SplitText(".title", {
 	 type: "chars, words",
 	});
@@ -37,8 +43,7 @@ const Hero = () => {
 	 delay: 1,
 	});
 	
-	gsap
-	.timeline({
+	gsap.timeline({
 	 scrollTrigger: {
 		trigger: "#hero",
 		start: "top top",
@@ -55,7 +60,7 @@ const Hero = () => {
 	
 	let tl = gsap.timeline({
 	 scrollTrigger: {
-		trigger: "video",
+		trigger: ".inner-video",
 		start: startValue,
 		end: endValue,
 		scrub: true,
@@ -63,11 +68,7 @@ const Hero = () => {
 	 },
 	});
 	
-	videoRef.current.onloadedmetadata = () => {
-	 tl.to(videoRef.current, {
-		currentTime: videoRef.current.duration,
-	 });
-	};
+	
  }, []);
  
  return (
@@ -87,7 +88,7 @@ const Hero = () => {
 		/>
 		
 		<div className="body">
-		 {/* <img src="/images/arrow.png" alt="arrow" className="arrow" /> */}
+		 <img src="/images/arrow.png" alt="arrow" className="arrow" />
 		 
 		 <div className="content">
 			<div className="space-y-5 hidden md:block">
@@ -111,11 +112,14 @@ const Hero = () => {
 	 
 	 <div className="video absolute inset-0">
 		<video
+		 className="inner-video"
 		 ref={videoRef}
 		 muted
 		 playsInline
 		 preload="auto"
 		 src="/videos/output.mp4"
+		 autoPlay
+		 loop
 		/>
 	 </div>
 	</>
