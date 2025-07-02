@@ -8,8 +8,15 @@ import About from "./components/About.jsx";
 import Art from "./components/Art.jsx";
 import Menu from "./components/Menu.jsx";
 import Contact from "./components/Contact.jsx";
+import Loader from "./components/Loader.jsx";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 const App = () => {
+    const [loading, setLoading] = React.useState(true);
+    React.useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
+    if (loading) return <Loader />;
     return(
         <main>
             <Navbar/>

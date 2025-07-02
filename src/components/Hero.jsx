@@ -49,6 +49,7 @@ const Hero = () => {
 	  duration: 1.8,
 	  ease: "expo.out",
 	  stagger: 0.06,
+	
 	});
   
 	gsap.from(paragraphSplit.lines, {
@@ -58,6 +59,7 @@ const Hero = () => {
 	  ease: "expo.out",
 	  stagger: 0.06,
 	  delay: 1,
+	
 	});
   
 	gsap.timeline({
@@ -66,6 +68,7 @@ const Hero = () => {
 		start: "top top",
 		end: "bottom top",
 		scrub: true,
+		
 	  },
 	})
 	.to(".right-leaf", { y: 200 }, 0)

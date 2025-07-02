@@ -2,31 +2,40 @@ import { openingHours, socials } from '/src/constants/index.js'
 import { useGSAP } from '@gsap/react'
 import { SplitText} from 'gsap/all';
 import gsap from 'gsap';
+import WebFont from 'webfontloader';
 
 const Contact = () => {
     useGSAP(() => {
-        const titleSplit = new SplitText('#contact h2', { type: 'words' });
-
-        const timeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: '#contact',
-                start: 'top center',
+        WebFont.load({
+            custom: {
+                families: ['Modern Negra Demo'],
+                urls: ['/public/fonts/Modern Negra Demo.ttf']
             },
-            ease: "power1.inOut"
-        })
+            active: function() {
+                const titleSplit = new SplitText('#contact h2', { type: 'words' });
 
-        timeline
-            .from(titleSplit.words, {
-                opacity: 0, yPercent: 100, stagger: 0.02
-            })
-            .from('#contact h3, #contact p', {
-                opacity: 0, yPercent: 100, stagger: 0.02
-            })
-            .to('#f-right-leaf', {
-                y: '-50', duration: 1, ease: 'power1.inOut'
-            }).to('#f-left-leaf', {
-            y: '-50', duration: 1, ease: 'power1.inOut'
-        }, '<')
+                const timeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '#contact',
+                        start: 'top center',
+                    },
+                    ease: "power1.inOut"
+                })
+
+                timeline
+                    .from(titleSplit.words, {
+                        opacity: 0, yPercent: 100, stagger: 0.02
+                    })
+                    .from('#contact h3, #contact p', {
+                        opacity: 0, yPercent: 100, stagger: 0.02
+                    })
+                    .to('#f-right-leaf', {
+                        y: '-50', duration: 1, ease: 'power1.inOut'
+                    }).to('#f-left-leaf', {
+                    y: '-50', duration: 1, ease: 'power1.inOut'
+                }, '<')
+            }
+        });
     })
 
     return (
