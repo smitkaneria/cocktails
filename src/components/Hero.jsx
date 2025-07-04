@@ -10,11 +10,6 @@ const Hero = () => {
  
  useGSAP(() => {
 
-	videoRef.current.onloadedmetadata = () => {
-		tl.to(videoRef.current, {
-		   currentTime: videoRef.current.duration,
-		});
-	   };
 
 	const heroSplit = new SplitText(".title", {
 	 type: "chars, words",
@@ -24,7 +19,7 @@ const Hero = () => {
 	 type: "lines",
 	});
 	
-	// Apply text-gradient class once before animating
+
 	heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
 	
 	gsap.from(heroSplit.chars, {
@@ -63,16 +58,20 @@ const Hero = () => {
 		trigger: ".inner-video",
 		start: startValue,
 		end: endValue,
-		scrub: true,
-		pin: true,
+		scrub:true,
+		pin:true,
 	 },
 	});
-	
+	videoRef.current.onloadedmetadata = () => {
+		tl.to(videoRef.current, {
+		  currentTime: videoRef.current.duration,
+		});
+	};
 	
  }, []);
  
  return (
-	<>
+	<div className="hero-container">
 	 <div id="hero" className="noisy">
 		<h1 className="title">MOJITO</h1>
 		
@@ -122,7 +121,7 @@ const Hero = () => {
 		 loop
 		/>
 	 </div>
-	</>
+	</div>
  );
 };
 
