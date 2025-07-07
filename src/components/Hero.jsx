@@ -71,12 +71,15 @@ const Hero = () => {
     if (videoRef.current) {
       const video = videoRef.current;
       const onReady = () => {
+        console.log('Video ready:', video.duration, video.readyState, video.src);
         if (video.duration && !isNaN(video.duration)) {
           tl.to(video, {
             currentTime: video.duration,
           });
-          video.play().catch(() => {}); // Try to force play
-          ScrollTrigger.refresh();
+          video.play().catch((e) => console.log('Video play error:', e));
+          setTimeout(() => ScrollTrigger.refresh(), 100); // Fallback refresh
+        } else {
+          console.log('Video duration not available');
         }
       };
       video.addEventListener('canplaythrough', onReady, { once: true });
