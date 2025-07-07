@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 // Register GSAP plugins
@@ -85,6 +85,20 @@ const Hero = () => {
       video.addEventListener('canplaythrough', onReady, { once: true });
       return () => video.removeEventListener('canplaythrough', onReady);
     }
+  }, []);
+
+  useEffect(() => {
+    const tryPlay = () => {
+      if (videoRef.current && videoRef.current.paused) {
+        videoRef.current.play().catch(() => {});
+      }
+    };
+    window.addEventListener('scroll', tryPlay, { once: true });
+    window.addEventListener('click', tryPlay, { once: true });
+    return () => {
+      window.removeEventListener('scroll', tryPlay);
+      window.removeEventListener('click', tryPlay);
+    };
   }, []);
 
   return (
