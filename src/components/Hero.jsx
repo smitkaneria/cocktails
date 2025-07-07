@@ -69,11 +69,18 @@ const Hero = () => {
     });
 
     if (videoRef.current) {
-      videoRef.current.onloadedmetadata = () => {
-        tl.to(videoRef.current, {
-          currentTime: videoRef.current.duration,
-        });
+      const video = videoRef.current;
+      const onReady = () => {
+        if (video.duration && !isNaN(video.duration)) {
+          tl.to(video, {
+            currentTime: video.duration,
+          });
+          video.play().catch(() => {}); // Try to force play
+          ScrollTrigger.refresh();
+        }
       };
+      video.addEventListener('canplaythrough', onReady, { once: true });
+      return () => video.removeEventListener('canplaythrough', onReady);
     }
   }, []);
 
